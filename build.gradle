@@ -1,0 +1,41 @@
+buildscript {
+
+    // ext 는 build.gradle 에서 전역변수를 설정
+    ext {
+        springBootVersion='2.4.5'
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+//springboot 의 의존성을 관리해주는 플러그인
+apply plugin: 'io.spring.dependency-management'
+
+
+group 'kr.co.hanjin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+//각종 의존성(라이브러리)들을 어떤 원격 저장소에서 받을 지 세
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    //특정버전을 명시하지 않아야 전역변수로 설정한 버전으로 라이브러리 관리가 됨
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    //testCompile group: 'junit', name: 'junit', version: '4.12'
+}
